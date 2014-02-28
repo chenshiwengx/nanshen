@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.bolo.dao.LocationMapper">  
+    <insert id="insertOne"  keyProperty="bid" parameterType="Location" >
+		  <selectKey  keyProperty="bid" resultType="String" order="BEFORE" >
+		    	 select sys_guid() from dual    
+		  </selectKey> 
+		 <![CDATA[ insert into 
+		  	location (bid,x,y,cindex)
+		    values(#{bid},#{x},#{y},#{cindex})]]> 
+	</insert>  
+    <update id="update" parameterType="Location"  
+        flushCache="true">  
+        update location 
+        <set> 
+        	 x = #{x},  
+             y = #{y},     
+             avglevel = #{avglevel}  
+        </set>  
+       		 where bid = #{bid}  
+    </update>
+    <select id="getByBid" resultType="Location" parameterType="String">
+		  <![CDATA[select * from Location t 
+		  where bid=#{bid}]]> 
+	</select>     
+</mapper>  
