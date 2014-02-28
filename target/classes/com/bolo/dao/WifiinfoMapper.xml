@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.bolo.dao.WifiinfoMapper">  
+    <insert id="insertOne"  keyProperty="bid" parameterType="Wifiinfo" >
+		  <![CDATA[insert into 
+		  	wifiinfo (bid,bssid,ssid,wlevel)
+		  	values(#{bid},#{bssid},#{ssid},#{wlevel})]]> 
+	</insert> 
+	<select id="gettAvgByBid" resultType="Wifiinfo" parameterType="String">
+		  <![CDATA[select bid ,bssid,avg(wlevel) as wlevel 
+		 	from wifiinfo t 
+		  	where bid=#{bid} group by bid,bssid ]]> 
+	</select>  
+	<insert id="insertAvgOne"  keyProperty="bid" parameterType="Wifiinfoavg" >
+		  <![CDATA[insert into 
+		  	wifiinfoavg (x,y,cindex,bssid,ssid,wlevel)
+		  	values(#{x},#{y},#{cindex},#{bssid},#{ssid},#{wlevel})]]> 
+	</insert> 
+    <resultMap id="getWekaDataByCindexResult" type="java.util.HashMap">
+         <result property="x" column="x"/>
+   		 <result property="y" column="y"/>
+   		 <result property="cindex" column="cindex"/>
+   		 <result property="bssid" column="bssid"/>
+   		 <result property="ssid" column="ssid"/>
+   		 <result property="wlevel" column="wlevel"/>
+    </resultMap>
+	<select id="getWekaDataByCindex" resultMap="getWekaDataByCindexResult"  parameterType="String">
+		  <![CDATA[select x,y,cindex,bssid,ssid,avg(wlevel) as wlevel 
+		  	from location t 
+			left join wifiinfo a on t.bid=a.bid 
+			where t.cindex=#{cindex} group by bssid,ssid,x,y,cindex 
+			order by x,y]]> 
+	</select>
+    <select id="getWifiAvg" resultMap="getWekaDataByCindexResult"  parameterType="java.util.Map">
+		  <![CDATA[select x,y,cindex,bssid,ssid,avg(wlevel) as wlevel 
+		  	from location t 
+			left join wifiinfo a on t.bid=a.bid 
+			where t.cindex=#{cindex} and x=#{x} and y=#{y} and bssid=#{bssid} group by bssid,ssid,x,y,cindex 
+			order by x,y
+		  ]]> 
+	</select>   
+	<resultMap id="getBssidByCindexResult" type="java.util.HashMap">
+   		 <result property="bssid" column="bssid"/>
+   		 <result property="ssid" column="ssid"/>
+    </resultMap>
+	<select id="getBssidByCindex" resultMap="getBssidByCindexResult"  parameterType="String">
+		  <![CDATA[select distinct(bssid) as bssid,ssid 
+		  	from location t 
+		  	left join wifiinfo a on t.bid=a.bid where t.cindex=#{cindex} 
+		  ]]> 
+	</select> 
+	<resultMap id="getMaxAndMinByCindexResult" type="java.util.HashMap">
+   		 <result property="bssid" column="bssid"/>
+   		 <result property="maxlevel" column="maxlevel"/>
+   		  <result property="minlevel" column="minlevel"/>
+    </resultMap>
+	<select id="getMaxAndMinByCindex" resultMap="getMaxAndMinByCindexResult"  parameterType="String">
+		  <![CDATA[select bssid,max(t.wlevel) as maxlevel ,min(t.wlevel) as minlevel
+		  	from wifiinfoavg t 
+		   	where t.cindex=#{cindex} 
+		   	group by bssid]]> 
+	</select>
+	<select id="gettAvgByCindex" resultType="Wifiinfoavg" parameterType="String">
+		  <![CDATA[select * from wifiinfoavg t 
+		 	where cindex=#{cindex} order by x,y,cindex]]> 
+	</select>  
+	 <insert id="insertWifiinfoAvg" parameterType="String">
+	   	<![CDATA[ Insert into WIFIINFOAVG
+	   	 	(x,y,Cindex,BSSID,ssid,Wlevel) 
+	   		 select x,y,cindex,bssid,ssid,avg(wlevel) as wlevel from location t 
+	   	 	left join wifiinfo a on t.bid=a.bid  
+	   	 	where t.cindex=#{cindex} group by bssid,ssid,x,y,cindex ]]>  
+    </insert>      
+	<resultMap id="getBssidCountByCindexResult" type="java.util.HashMap">
+   		 <result property="bssid" column="bssid"/>
+   		 <result property="ssid" column="ssid"/>
+    </resultMap>
+	<select id="getBssidCountByCindex" resultMap="getBssidCountByCindexResult"  parameterType="String">
+		  <![CDATA[	select bssid,count(*) as num
+		  	from wifiinfoavg t 
+		  	where t.cindex=#{cindex} group by t.bssid]]> 
+	</select>
+	<select id="getWifiAvgWithValue" resultType="Wifiinfoavg"  parameterType="java.util.Map">
+		  <![CDATA[select * from wifiinfoavg a,(select x,y 
+		  	from wifiinfoavg t 
+		  	where bssid=#{bssid} and wlevel>=#{wlevelmin} and wlevel<=#{wlevelmax}) b 
+		  	where a.x=b.x and a.y=b.y order by a.x,a.y]]> 
+	</select>
+	
+</mapper>  
