@@ -29,7 +29,7 @@
         <property name="password" value="app" /> -->
         
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://acedemo.mysql.rds.aliyuncs.com:3306/dbxp74k19179e8rf" />
+        <property name="url" value="jdbc:mysql://rds2yfruyeub32y.mysql.rds.aliyuncs.com:3306/dbxp74k19179e8rf" />
         <property name="username" value="dbxp74k19179e8rf" />
         <property name="password" value="2832746" />
 

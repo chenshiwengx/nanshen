@@ -4,32 +4,47 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bolo.entity.NanshenUser;
+import com.bolo.entity.User1;
 import com.bolo.service.TestShiwu;
+import com.bolo.service.UserMngSv;
 import com.bolo.util.TxtRwriteFile;
 @Controller
 @RequestMapping(value = "/test")
 public class TestCtrl {
+
 	@Autowired
-	TestShiwu testShiwu;
-	@RequestMapping(value = "/testshiwu1")
+	UserMngSv userMng;	
+	@RequestMapping(value = "/nanshen")
 	@ResponseBody
-	public String testshiwu(){
-		try{
-			testShiwu.save();
-			return "ok";
+	public NanshenUser testNanshen(@RequestParam("id")int id){
+		try{	
+			NanshenUser user=userMng.queryUserById(id);
+			return user;
 		}catch(Exception ex){
 			ex.printStackTrace();
-			return "error";
+			return null;
 		}
 	}
-	@RequestMapping(value ="/localresultTotxt")
-	public void getMylocaltion2(@RequestParam("x")String x,@RequestParam("y")String y,@RequestParam("localindex")String cindex,@RequestParam("datas")String datas) throws IOException {
-		TxtRwriteFile txtWriter= new TxtRwriteFile("F:/localresult.txt");
-		txtWriter.writeTxtToend(x+","+y+" "+"定位方法："+cindex);
-		txtWriter.writeTxtToend(datas);
+	@RequestMapping(value = "newuser", method = RequestMethod.GET)
+    public String getData2(){
+		System.out.print("1111");
+		return "login";
+    }
+	@RequestMapping("/index")
+    public String getData3(){
+		return "index";
+    }
+	@RequestMapping(method = RequestMethod.GET)
+	public String login() {
+		return "index";
+		//return "baidumap/hw";
 	}
 }

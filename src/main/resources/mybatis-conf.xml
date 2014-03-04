@@ -23,11 +23,13 @@
         <typeAlias alias="Location" type="com.bolo.entity.Location"/> 
         <typeAlias alias="Wifiinfo" type="com.bolo.entity.Wifiinfo"/> 
         <typeAlias alias="Wifiinfoavg" type="com.bolo.entity.Wifiinfoavg"/> 
+        <typeAlias alias="NanshenUser" type="com.bolo.entity.NanshenUser"/>  
     </typeAliases>  
       
     <mappers>  
         <mapper resource="com/bolo/dao/UserServiceMapper.xml"/>  
         <mapper resource="com/bolo/dao/LocationMapper.xml"/> 
-        <mapper resource="com/bolo/dao/WifiinfoMapper.xml"/>  
+        <mapper resource="com/bolo/dao/WifiinfoMapper.xml"/>
+        <mapper resource="com/bolo/dao/UserMapper.xml"/>   
     </mappers> 
 </configuration>  
