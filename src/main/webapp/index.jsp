@@ -21,7 +21,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+<<<<<<< HEAD
           <a class="navbar-brand" href="#">男神养成记</a>
+=======
+          <a class="navbar-brand" href="#">男神成长日记</a>
+>>>>>>> 4af4f083d4032782e3d973a406a38556f84b7d9c
         </div>
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="form">
@@ -31,7 +35,11 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control">
             </div>
+<<<<<<< HEAD
             <button type="submit" class="btn btn-success">登陆</button>
+=======
+            <button type="submit" class="btn btn-success">Sign in</button>
+>>>>>>> 4af4f083d4032782e3d973a406a38556f84b7d9c
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -58,9 +66,15 @@
           <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
+<<<<<<< HEAD
         <!-- <div class="col-md-5">
           <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="img/camera_美化000.jpg">
         </div> -->
+=======
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="img/camera_美化000.jpg">
+        </div>
+>>>>>>> 4af4f083d4032782e3d973a406a38556f84b7d9c
       </div>
 
       <hr class="featurette-divider">
@@ -71,7 +85,11 @@
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
+<<<<<<< HEAD
         <p>© 2014 Company, kiddwen.  <a href="#">350746707@qq。com</a> · <a href="#">kiddwen</a></p>
+=======
+        <p>© 2013 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+>>>>>>> 4af4f083d4032782e3d973a406a38556f84b7d9c
       </footer>
 
     </div>

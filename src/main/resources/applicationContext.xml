@@ -29,7 +29,11 @@
         <property name="password" value="app" /> -->
         
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+<<<<<<< HEAD
         <property name="url" value="jdbc:mysql://rds2yfruyeub32y.mysql.rds.aliyuncs.com:3306/dbxp74k19179e8rf" />
+=======
+        <property name="url" value="jdbc:mysql://acedemo.mysql.rds.aliyuncs.com:3306/dbxp74k19179e8rf" />
+>>>>>>> 4af4f083d4032782e3d973a406a38556f84b7d9c
         <property name="username" value="dbxp74k19179e8rf" />
         <property name="password" value="2832746" />
 
